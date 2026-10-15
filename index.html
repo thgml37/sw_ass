@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바이브 카페 - 주문서</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="바이브 카페 홈">
+        <span class="brand-icon">☕</span>
+        <span>vibe <b>cafe</b></span>
+      </a>
+      <button class="history-link" id="showHistory" type="button">📋 주문 내역 <span id="historyCount">0</span></button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">YOUR DAILY PICK-ME-UP</p>
+          <h1>바이브 카페</h1>
+          <p>당신의 하루에 바이브를 더하다</p>
+          <a class="hero-button" href="#orderForm">☕ 주문하기 <span>↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="coffee-beans bean-one"></div>
+          <div class="coffee-beans bean-two"></div>
+          <div class="cup">
+            <div class="cup-top"><div class="coffee"></div></div>
+            <div class="cup-body"><span>vibe<br><b>cafe</b></span></div>
+            <div class="cup-handle"></div>
+          </div>
+          <div class="art-leaf leaf-one"></div>
+          <div class="art-leaf leaf-two"></div>
+          <div class="art-caption">take a little<br>coffee break</div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <form class="order-card" id="orderForm">
+          <div class="section-heading">
+            <div><p class="eyebrow">ORDER SOMETHING GOOD</p><h2>오늘의 주문</h2></div>
+            <span class="step">ORDER <b>01</b></span>
+          </div>
+
+          <div class="field">
+            <label for="customerName">이름 <em>*</em></label>
+            <input id="customerName" name="customerName" type="text" placeholder="주문자 성함을 입력해주세요" required maxlength="40">
+          </div>
+          <div class="field">
+            <label for="phone">전화번호 <span class="optional">선택</span></label>
+            <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" maxlength="13">
+          </div>
+          <div class="field">
+            <label for="drink">음료 선택 <em>*</em></label>
+            <select id="drink" name="drink" required>
+              <option value="" disabled selected>음료를 선택해주세요</option>
+              <option value="아메리카노" data-price="3500">아메리카노 · 3,500원</option>
+              <option value="카페라떼" data-price="4000">카페라떼 · 4,000원</option>
+              <option value="바닐라라떼" data-price="4500">바닐라라떼 · 4,500원</option>
+              <option value="카푸치노" data-price="4200">카푸치노 · 4,200원</option>
+              <option value="초코라떼" data-price="4500">초코라떼 · 4,500원</option>
+              <option value="말차라떼" data-price="4800">말차라떼 · 4,800원</option>
+              <option value="복숭아 아이스티" data-price="3500">복숭아 아이스티 · 3,500원</option>
+              <option value="레몬에이드" data-price="4500">레몬에이드 · 4,500원</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label-row"><label>사이즈</label><span class="helper">하나를 선택해주세요</span></div>
+            <div class="choice-grid size-choices">
+              <label class="choice"><input type="radio" name="size" value="S" data-price="0"><span class="choice-main">S</span><span class="choice-sub">기본</span><span class="choice-price">+0원</span></label>
+              <label class="choice selected"><input type="radio" name="size" value="M" data-price="500" checked><span class="choice-main">M</span><span class="choice-sub">레귤러</span><span class="choice-price">+500원</span></label>
+              <label class="choice"><input type="radio" name="size" value="L" data-price="1000"><span class="choice-main">L</span><span class="choice-sub">라지</span><span class="choice-price">+1,000원</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label-row"><label>추가 옵션</label><span class="helper">여러 개 선택 가능</span></div>
+            <div class="option-grid">
+              <label class="option"><input type="checkbox" name="option" value="샷 추가" data-price="500"><span class="checkmark">✓</span><span>샷 추가</span><b>+500원</b></label>
+              <label class="option"><input type="checkbox" name="option" value="크림 추가" data-price="500"><span class="checkmark">✓</span><span>크림 추가</span><b>+500원</b></label>
+              <label class="option"><input type="checkbox" name="option" value="시럽 추가" data-price="300"><span class="checkmark">✓</span><span>시럽 추가</span><b>+300원</b></label>
+              <label class="option"><input type="checkbox" name="option" value="디카페인" data-price="0"><span class="checkmark">✓</span><span>디카페인</span><b>+0원</b></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label-row"><label for="quantity">수량</label><span class="helper">최대 20잔</span></div>
+            <div class="quantity-control">
+              <button type="button" id="minusQty" aria-label="수량 줄이기">−</button>
+              <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required>
+              <button type="button" id="plusQty" aria-label="수량 늘리기">+</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="request">요청사항 <span class="optional">선택</span></label>
+            <textarea id="request" name="request" rows="3" placeholder="얼음 적게, 빨대 함께 주세요 등"></textarea>
+          </div>
+
+          <div class="total-box">
+            <div><span>예상 금액</span><small id="priceBreakdown">음료를 선택해주세요</small></div>
+            <strong id="totalPrice">0<span>원</span></strong>
+          </div>
+          <div class="form-actions">
+            <button class="submit-button" type="submit">주문하기 <span>→</span></button>
+            <button class="reset-button" id="resetForm" type="button">다시 작성</button>
+          </div>
+          <p class="notice">※ 본 페이지는 주문서 기능을 확인하기 위한 데모입니다.</p>
+        </form>
+
+        <aside class="side-column">
+          <div class="side-card today-card">
+            <span class="side-icon">✦</span>
+            <p class="eyebrow">A LITTLE NOTE</p>
+            <h3>오늘도, 나를 위한<br>작은 여유 한 잔.</h3>
+            <p>좋아하는 음료와 함께<br>잠깐 쉬어가는 시간을 가져보세요.</p>
+            <div class="scribble">made with ☕</div>
+          </div>
+          <div class="side-card menu-card">
+            <div class="side-title"><h3>Popular menu</h3><span>BEST 3</span></div>
+            <div class="popular-item"><div class="drink-thumb iced">✦</div><div><b>아메리카노</b><small>깔끔하고 고소한 맛</small></div><strong>3,500원</strong></div>
+            <div class="popular-item"><div class="drink-thumb latte">♡</div><div><b>카페라떼</b><small>부드러운 우유와 에스프레소</small></div><strong>4,000원</strong></div>
+            <div class="popular-item"><div class="drink-thumb tea">☼</div><div><b>말차라떼</b><small>쌉싸름한 말차의 매력</small></div><strong>4,800원</strong></div>
+          </div>
+          <div class="mini-footer">GOOD COFFEE, GOOD VIBE. <span>© VIBE CAFE</span></div>
+        </aside>
+      </section>
+    </main>
+    <footer>☕ 오늘의 기분에 어울리는 한 잔, 바이브 카페</footer>
+  </div>
+
+  <div class="modal-backdrop" id="historyModal" hidden>
+    <section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+      <div class="modal-header"><div><p class="eyebrow">YOUR ORDERS</p><h2 id="historyTitle">주문 내역</h2></div><button type="button" id="closeHistory" aria-label="닫기">×</button></div>
+      <div id="historyList" class="history-list"></div>
+      <div class="modal-bottom"><button type="button" id="clearHistory" class="reset-button">내역 비우기</button><button type="button" id="doneHistory" class="submit-button">확인</button></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
